@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <VrcReferences>true</VrcReferences>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <RootNamespace>NekoClient</RootNamespace>
+    <AssemblyName>NekoClient.QuickExit</AssemblyName>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="Build">
+    <Exec Command="$(SolutionDir)\_tools\pdb2mdb.exe $(TargetPath)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)\_build\$(Configuration)" />
+    <Copy SourceFiles="$(TargetPath).mdb" DestinationFolder="$(SolutionDir)\_build\$(Configuration)" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(SolutionDir)\_deps\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(SolutionDir)\_deps\Managed\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="MelonLoader.ModHandler">
+      <HintPath>$(SolutionDir)\_deps\MelonLoader.ModHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Oculus.VR">
+      <HintPath>$(SolutionDir)\_deps\Managed\Oculus.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnhollowerBaseLib">
+      <HintPath>$(SolutionDir)\_deps\Managed\UnhollowerBaseLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(SolutionDir)\_deps\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
