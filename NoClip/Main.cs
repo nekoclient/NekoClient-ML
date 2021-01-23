@@ -121,10 +121,16 @@ namespace NekoClient
             {
                 if (m_airbreakActive)
                 {
+                    // VRCUiManager.QueueHudMessage equivalent
+                    // still same bug as years ago where two messages need to be queued for the first one to be displayed immediately
+                    VRCUiManager.prop_VRCUiManager_0.field_Private_List_1_String_0.Add("Noclip OFF");
+                    VRCUiManager.prop_VRCUiManager_0.field_Private_List_1_String_0.Add("");
                     DisableAirbreak();
                 }
                 else
                 {
+                    VRCUiManager.prop_VRCUiManager_0.field_Private_List_1_String_0.Add("Noclip ON");
+                    VRCUiManager.prop_VRCUiManager_0.field_Private_List_1_String_0.Add("");
                     SetupAirbreak();
                 }
 

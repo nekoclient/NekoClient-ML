@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <VrcReferences>true</VrcReferences>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <RootNamespace>NekoClient</RootNamespace>
     <AssemblyName>NekoClient.InviteAnywhere</AssemblyName>
@@ -14,7 +13,6 @@
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)\_build\$(Configuration)" />
     <Copy SourceFiles="$(TargetPath).mdb" DestinationFolder="$(SolutionDir)\_build\$(Configuration)" />
   </Target>
-
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
