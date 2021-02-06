@@ -8,6 +8,7 @@ using System.Diagnostics;
 using MelonLoader;
 using Object = UnityEngine.Object;
 using UnhollowerRuntimeLib;
+using OVR.OpenVR;
 
 [assembly: MelonInfo(typeof(NekoClient.VrcPlayspaceMover),
         "NekoClient:VrcOculusPlayspace",
@@ -75,13 +76,13 @@ namespace NekoClient
 
             if (leftTrigger || rightTrigger)
             {
-                Object[] ctrls = Object.FindObjectsOfType(Il2CppType.Of<VRCVrCameraOculus>());
+                Object[] ctrls = Object.FindObjectsOfType(Il2CppType.Of<OVRCameraRig>());
 
-                VRCVrCameraOculus ctrl;
+                OVRCameraRig ctrl;
 
                 if (ctrls.Length > 0)
                 {
-                    ctrl = ctrls[0].TryCast<VRCVrCameraOculus>();
+                    ctrl = ctrls[0].TryCast<OVRCameraRig>();
                 }
                 else
                 {
@@ -95,7 +96,7 @@ namespace NekoClient
                     Vector3 calculatedOffset = (currentOffset - m_startingOffset) * -1.0f;
                     m_startingOffset = currentOffset;
 
-                    ctrl.cameraLiftTransform.localPosition += calculatedOffset;
+                    ctrl.trackingSpace.localPosition += calculatedOffset;
                 }
 
                 if (rightTrigger)
@@ -104,7 +105,7 @@ namespace NekoClient
                     Vector3 calculatedOffset = (currentOffset - m_startingOffset) * -1.0f;
                     m_startingOffset = currentOffset;
 
-                    ctrl.cameraLiftTransform.localPosition += calculatedOffset;
+                    ctrl.trackingSpace.localPosition += calculatedOffset;
                 }
             }
         }
